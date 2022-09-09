@@ -1,1 +1,20 @@
+:root {
+    --background-color: #343333;
+    --primary-color: rgb(63, 197, 227);
+    --secondaty-color: white;
+}
 
+html {
+    background-color: rgb(34, 33, 33);
+    color: rgb(43, 192, 225);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.75em;
+}
+
+textarea {
+    background-color: #343333;
+    color: var(--primary-color);
+    border: none;
+    padding: 15px;
+    
+}

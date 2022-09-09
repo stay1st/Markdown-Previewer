@@ -1,55 +1,118 @@
 import React, { useState } from "react";
 
+
 export default function UserInput() {
 
-
-    const [input, setInput] = useState('Hello');
     const [htmlAttr, setHtmlAttr] = useState(<></>);
-
-    let text = '';
-
-    const expressions = {
-
-        h1: [/^#\s.*/,function(input){return <h1>{input}</h1>}],
-        h2: [/^#{2}\s.*/,function(input){return <h2>{input}</h2>}],
-        h3: [/^#{3}\s.*/,function(input){return <h3>{input}</h3>}]
-    }
-    const [regex, setRegex] = useState(expressions);
+    const [input, setInput] = useState('Hello');
+    // const expressions = {
+    //     h1: [/^#\s.*/, jsxObj.h1()],
+    //     h2: [/^#{2}\s.*/, jsxObj.h2()],
+    //     h3: [/^#{3}\s.*/, jsxObj.h3()],
+    //     h4: [/^#{4}\s.*/, jsxObj.h4()],
+    //     bold: [/[\*]{2}[a-zA-Z0-9\t\n ./<>?;:"'`!@#$%^&*()\[\]{}_+=|\\-]+[\*]/g, jsxObj.bold()]
+    // };
 
     const handleChange = (event) => {
+
+        const boldConvert = (input) => {
+
+            let regInput = ''
+
+            regInput = input.match(/[\*]{2}[a-zA-Z0-9\t\n ./<>?;:"'`!@#$%^&*()\[\]{}_+=|\\-]+[\*]/g);
+            regInput = regInput.toString();
+
+            let beforeAstr = input.split(regInput)[0];
+            let middleExp = regInput.replace(new RegExp(/\*\*/, 'g'), '');
+            let afterAstr = input.split(regInput)[2];
+
+            // console.log('regInput-------------START:', regInput);
+            // console.log('beforeAstr BOLD:', beforeAstr);
+            // console.log("middleExp BOLD:", middleExp);
+            // console.log("aftrAst BOLD:", afterAstr);
+            // console.log("input in func:", input);
+            // console.log("input match:---------END", input.match(/[\*]{2}[a-zA-Z0-9\t\n ./<>?;:"'`!@#$%^&*()\[\]{}_+=|\\-]+[\*]/g));
+
+            return <p>{beforeAstr}<strong>{middleExp}</strong>{afterAstr}</p>;
+        };
+
+        function h1(input){
+            let match = input.match(/^#\s.*/);
+            input = input.replace('# ', ''); 
+            return <h1>{input}{console.log("h1-Match:", match)}</h1> 
+        };
+        function h2(input){
+            let match = input.match(/^#{2}\s.*/)
+            input = input.replace('##', ''); 
+            return <h2>{input}{console.log("h2-Match:", match)}</h2> 
+        };
+        function h3(input){ 
+            let match = input.match(/^#{3}\s.*/)
+            input = input.replace('###', ''); 
+            return <h3>{input}{console.log("h3-Match:", match)}</h3>
+        };
+        function h4(input){
+            let match = input.match(/^#{4}\s.*/)
+            input = input.replace('####', ''); 
+            return <h3>{input}{console.log("h4-Match:", match)}</h3>
+        };
+        function strong(input){
+            let match = input.match(/[\*]{2}[a-zA-Z0-9\t\n ./<>?;:"'`!@#$%^&*()\[\]{}_+=|\\-]+[\*]/g)
+            return boldConvert(input)
+        };
 
         setHtmlAttr(event.target.value);
         setInput(event.target.value);
 
-            let regexVals = Object.values(regex).map(val => val[0]); // mapping the regexp(s) to an array
-            let regexKeys = Object.keys(regex);                   // mapping the regex keys to an array
-            let attributes = Object.values(regex).map(val => val[1]); // mapping the HTML attributes to an array
+        const arrRegEx = [/^#\s.*/, /^#{2}\s.*/, /^#{3}\s.*/, /^#{4}\s.*/, /[\*]{2}[a-zA-Z0-9\t\n ./<>?;:"'`!@#$%^&*()\[\]{}_+=|\\-]+[\*]/g];
 
-///* console regexVals */ console.log("regexVals:", regexVals);
-///* console regexKeys */ console.log("regexKeys:", regexKeys);
-///* console attributes */ console.log("attributes B4:", attributes);
+        const callBacks = [h1(), h2(), h3(), h4(), strong()];
 
-            for (let i = 0; i <= regexVals.length; i++) {
-///* console regexVals vs input */ console.log("input match:", input.match(expression));
-                if (input.match(regexVals[i]) !== null) {
-///* console input = regular expression*/ console.log("matches regex(input):", input);
-                    text = attributes[i](event.target.value)
-                    setHtmlAttr(text);
-///* console text */ console.log("attributes IF:", text);
-                }
+        let text = ''
+
+        for (let i = 0; i < arrRegEx.length; i++) {
+
+            let text = input.match(arrRegEx[i])
+
+            if (text !== null) {
+                text = callBacks[i](text);
+                setHtmlAttr(text);
             }
         }
-
+    }
     return (
         <div>
-            <input
+            <textarea
                 id="editor"
                 onChange={handleChange}
                 value={input}
+                cols='40'
+                rows='20'
             />
-            {input}
             {htmlAttr}
-            {text}
         </div>
     )
 };
+
+    // (input) {
+        //         let regInput = '';
+        //         const boldConvert = () => {
+
+        //             regInput = input.match(/[\*]{2}[a-zA-Z0-9\t\n ./<>?;:"'`!@#$%^&*()\[\]{}_+=|\\-]+[\*]/g);
+        //             regInput = regInput.toString();
+        //             let beforeAstr = input.split(regInput)[0];
+        //             let middleExp = regInput.replace(new RegExp(/\*\*/, 'g'), '');
+        //             let afterAstr = input.split(regInput)[2];
+
+        //             console.log('regInput-------------START:', regInput);
+        //             console.log('beforeAstr BOLD:', beforeAstr);
+        //             console.log("middleExp BOLD:", middleExp);
+        //             console.log("aftrAst BOLD:", afterAstr);
+        //             console.log("input in func:", input);
+        //             console.log("input match:---------END", input.match(/[\*]{2}[a-zA-Z0-9\t\n ./<>?;:"'`!@#$%^&*()\[\]{}_+=|\\-]+[\*]/g));
+
+        //             return <p>{beforeAstr}<strong>{middleExp}</strong>{afterAstr}</p>;
+        //         };
+        //         return <div>{boldConvert(input)}{console.log('input OUT:',input)}</div>}]
+        //                                         //  input = input.repalce("**", '');
+        //                                         //  input = <strong>{input}</strong>; return <p>{input}</p>}]
