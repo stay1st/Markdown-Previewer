@@ -1,32 +1,38 @@
 import React, { useState } from "react";
 import RegExpCheck from "./RegExpCheck";
+import JsxHandler from "./JsxHandler";
 
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    console.log("APP props:", props)
+    this.state = {
+    }
     console.log('App props:', this.props);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.modInput = this.setModInput.bind(this);
   }
 
-  createJSX() {
-    return this.state.regex.toString()
+  onChange(arrayOfRegExp, event, regexMatch) {
+
+    this.setState({ match: regexMatch });
+    this.setState({ input: event });
+    this.setState({ jsx: [arrayOfRegExp, event, regexMatch] });
+
+    const h1 = (array) => array.map(val => val.toString() === '# ');
+    const h2 = (array) => array.map(val => val.toString() === '# ');
+    const h3 = (array) => array.map(val => val.toString() === '### ');
+    const bold = (array) => array.map(val => val.hasOwnProperty('**'));
+
+    this.setState({arrOfMethods: [h1, h2, h3, bold]})
+
   }
 
-  onChange(name, event, regex){
-    
-    this.setState({[name]: regex});
-    this.setState({input: event});
-    this.createJSX(name, event, regex);
-
-    this.createJSX()
-
-    console.log('App.onChange(name):', name)
-    console.log('App.onChange(event):', event)
-    console.log('App.onChange(regex):', regex)
-  }
-
+  // console.log('App.onChange(arrayOfRegExp):', arrayOfRegExp)
+  // console.log('App.onChange(event):', event)
+  // console.log('App.onChange(regexMatch):', regexMatch)
 
   render() {
     return (
@@ -36,8 +42,11 @@ class App extends React.Component {
           <RegExpCheck onChange={this.onChange.bind(this)} />
           {console.log('App.onChange(state):', this.state)}
         </div>
+        <JsxHandler
+          state={this.state}
+        />
         <div>
-        <p>{this.state.input}</p>
+          <p>{this.state.input}</p>
         </div>
       </div>
     )
