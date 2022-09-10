@@ -7,10 +7,9 @@ import JsxHandler from "./JsxHandler";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log("APP props:", props)
     this.state = {
     }
-    console.log('App props:', this.props);
+    console.log('App.props:', this.props);
     // this.handleChange = this.handleChange.bind(this);
     // this.modInput = this.setModInput.bind(this);
   }
@@ -21,13 +20,28 @@ class App extends React.Component {
     this.setState({ input: event });
     this.setState({ jsx: [arrayOfRegExp, event, regexMatch] });
 
-    const h1 = (array) => array.map(val => val.toString() === '# ');
-    const h2 = (array) => array.map(val => val.toString() === '# ');
-    const h3 = (array) => array.map(val => val.toString() === '### ');
-    const bold = (array) => array.map(val => val.hasOwnProperty('**'));
+    let array = [];
 
-    this.setState({arrOfMethods: [h1, h2, h3, bold]})
+    const createBools = (regular) => {
 
+      let arrOfBools = []
+
+      const h1 = (array) => {return array.map(val => val.toString() === '# ')};
+      const h2 = (array) => {return array.map(val => val.toString() === '# ')};
+      const h3 = (array) => {return array.map(val => val.toString() === '### ')};
+      const bold = (array) => {return array.map(val => val.hasOwnProperty('**'))};
+
+      const head1 = h1(regular.toString());
+      const head2 = h2(regular.toString());
+      const head3 = h3(regular.toString());
+      const bolded = bold(regular.toString());
+
+      arrOfBools.push(head1, head2, head3, bolded);
+      return array.push(arrOfBools)
+    }
+    createBools(regexMatch);
+    this.setState({ bools: array });
+    console.log('bools:', this.bools)
   }
 
   // console.log('App.onChange(arrayOfRegExp):', arrayOfRegExp)
@@ -44,9 +58,10 @@ class App extends React.Component {
         </div>
         <JsxHandler
           state={this.state}
+          arrOfMethods
         />
         <div>
-          <p>{this.state.input}</p>
+          <p id="preview"></p>
         </div>
       </div>
     )
