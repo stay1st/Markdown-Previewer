@@ -2,6 +2,12 @@ html {
   background-color: rgb(34, 33, 33);
 }
 
+h2, h3 {
+  padding-left: 40px; /* This is to align the headings 
+to the right, since there is a padding of 40px on the right
+of the container they're in "#left-container"*/
+}
+
 a {
   color: rgb(36, 166, 195);
   text-decoration: none;
@@ -35,12 +41,6 @@ a:visited {
   letter-spacing: 0.025em;
 }
 
-h2, h3 {
-  padding-left: 40px; /* This is to align the headings 
-to the right, since there is a padding of 40px on the right
-of the container they're in "#left-container"*/
-}
-
 #left-container {
   justify-content: center;
   display: block;
@@ -53,6 +53,11 @@ of the container they're in "#left-container"*/
 #right-container {
   justify-content: center;
   width: 60%;
+}
+#right-container img {
+  max-height: 100%;
+  height: auto;
+  max-width: 100%;
 }
 
 #editor, #previewer, #documentation-area {
