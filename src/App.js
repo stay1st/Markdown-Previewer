@@ -8,10 +8,10 @@ export default function App() {
     const [input, setInput] = useState();
 
     useEffect(() => {
-        fetch('.../README.md').then((response) => {
+        fetch('./README.md').then((response) => {
             return response.ok ? response.text() : Promise.reject('README.md not fetched correctly!');
         }).then((text) => setInput(text)).catch((error) => console.log(error));
-    });
+    },[]);
 
     return (
         <div className="app">
