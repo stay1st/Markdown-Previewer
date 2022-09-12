@@ -1,0 +1,102 @@
+$bgrndClrDrkPrime: rgb(34, 33, 33);
+$bgrndClrDrkn: darken($bgrndClrDrkPrime, 10%);
+$bgrndClrLtn: lighten($bgrndClrDrkPrime, 10%);
+$primeClr: rgb(36, 166, 195);
+$secondClr: rgb(231, 222, 222);
+$linkClr: $primeClr;
+$linkHvrClr: lighten($linkClr, 30%);
+$linkVisited: darken($linkClr, 20%);
+$editorText: 'Courier New', Courier, monospace;
+$mainFont: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+html {
+    background-color: $bgrndClrDrkPrime;
+}
+
+a {
+    color: $linkClr;
+    text-decoration: none;
+    &:hover {
+        color: $linkHvrClr;
+        border-bottom: 1px solid $linkHvrClr;
+    }
+    &:visited {
+        color: $linkVisited;
+        border-bottom: 1px solid $linkVisited;
+    };
+}
+
+/* body {
+    display: flex;
+    justify-content: center;
+} */
+
+.app {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.main-text {
+    font-family: $mainFont;
+    color: $primeClr;
+    text-align: center;
+}
+
+#h1-text {
+    letter-spacing: .025em;
+}
+
+h2, h3 {
+    padding-left: 40px; /* This is to align the headings 
+    to the right, since there is a padding of 40px on the right
+    of the container they're in "#left-container"*/
+}
+
+#left-container {
+    justify-content: center;
+    display: block;
+    width: 40%;
+    margin-right: 4px;
+    align-items: center;
+    padding-right: 40px;
+}
+
+#right-container {
+    justify-content: center;
+    width: 60%;
+}
+
+#editor, #previewer, #documentation-area {
+    border: none;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+#editor {
+    color: $primeClr;
+    background-color: $bgrndClrDrkn;
+    height: 40vh;
+    width: 100%;
+    font-family: $editorText;
+    resize: none;
+}
+
+#previewer {
+    color: $secondClr;
+    background-color: $bgrndClrLtn;
+    border: 2px solid $primeClr;
+    height: 80vh;
+    letter-spacing: .05em;
+    text-align: left;
+}
+
+#documentation-area {
+    color: $primeClr;
+    background-color: $bgrndClrDrkn;
+    height: 36vh;
+    width: 100%;
+    font-family: $mainFont;
+    resize: none;
+}

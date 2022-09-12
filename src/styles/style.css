@@ -1,0 +1,89 @@
+html {
+  background-color: rgb(34, 33, 33);
+}
+
+a {
+  color: rgb(36, 166, 195);
+  text-decoration: none;
+}
+a:hover {
+  color: #95dceb;
+  border-bottom: 1px solid #95dceb;
+}
+a:visited {
+  color: #145d6d;
+  border-bottom: 1px solid #145d6d;
+}
+
+/* body {
+    display: flex;
+    justify-content: center;
+} */
+.app {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.main-text {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(36, 166, 195);
+  text-align: center;
+}
+
+#h1-text {
+  letter-spacing: 0.025em;
+}
+
+h2, h3 {
+  padding-left: 40px; /* This is to align the headings 
+to the right, since there is a padding of 40px on the right
+of the container they're in "#left-container"*/
+}
+
+#left-container {
+  justify-content: center;
+  display: block;
+  width: 40%;
+  margin-right: 4px;
+  align-items: center;
+  padding-right: 40px;
+}
+
+#right-container {
+  justify-content: center;
+  width: 60%;
+}
+
+#editor, #previewer, #documentation-area {
+  border: none;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+#editor {
+  color: rgb(36, 166, 195);
+  background-color: #080808;
+  height: 40vh;
+  width: 100%;
+  font-family: "Courier New", Courier, monospace;
+  resize: none;
+}
+
+#previewer {
+  color: rgb(231, 222, 222);
+  background-color: #3c3a3a;
+  border: 2px solid rgb(36, 166, 195);
+  height: 80vh;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+#documentation-area {
+  color: rgb(36, 166, 195);
+  background-color: #080808;
+  height: 36vh;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  resize: none;
+}/*# sourceMappingURL=style.css.map */
