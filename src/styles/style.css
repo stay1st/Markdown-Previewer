@@ -1,18 +1,18 @@
-html {
-  background-color: rgb(34, 33, 33);
+body {
+  background-color: #1a2425;
 }
 
 a {
-  color: rgb(36, 166, 195);
+  color: rgb(37, 184, 217);
   text-decoration: none;
 }
 a:hover {
-  color: #95dceb;
-  border-bottom: 1px solid #95dceb;
+  color: #a7e3f0;
+  border-bottom: 1px solid #a7e3f0;
 }
 a:visited {
-  color: #145d6d;
-  border-bottom: 1px solid #145d6d;
+  color: #166e82;
+  border-bottom: 1px solid #166e82;
 }
 
 /* body {
@@ -28,7 +28,7 @@ a:visited {
 
 .main-text {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: rgb(36, 166, 195);
+  color: rgb(37, 184, 217);
   text-align: center;
 }
 
@@ -43,11 +43,11 @@ a:visited {
 }
 #left-container h2,
 #left-container h3 {
-  padding-left: 40px;
   /* This is to align the headings 
   to the right, since there is a padding of 40px on the right
   of the container they're in "#left-container"*/
   margin-top: 5px, 5px, 0, 0;
+  letter-spacing: 0.07em;
 }
 
 #right-container {
@@ -71,11 +71,12 @@ a:visited {
   border-radius: 4px;
   padding-left: 10px;
   padding-top: 10px;
+  overflow-y: scroll;
 }
 
 #editor {
-  color: rgb(36, 166, 195);
-  background-color: #080808;
+  color: rgb(37, 184, 217);
+  background-color: #050707;
   height: 40vh;
   width: 100%;
   font-family: "Courier New", Courier, monospace;
@@ -84,8 +85,8 @@ a:visited {
 }
 
 #documentation-area {
-  color: rgb(36, 166, 195);
-  background-color: #080808;
+  color: rgb(37, 184, 217);
+  background-color: #050707;
   height: 36vh;
   width: 100%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -94,8 +95,8 @@ a:visited {
 
 #previewer {
   color: rgb(231, 222, 222);
-  background-color: #3c3a3a;
-  border: 2px solid rgb(36, 166, 195);
+  background-color: #2f4143;
+  border: 2px solid rgb(37, 184, 217);
   padding-right: 12px;
   letter-spacing: 0.05em;
   text-align: left;
