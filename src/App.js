@@ -6,12 +6,13 @@ import "./styles/style.css";
 export default function App() {
 
     const [input, setInput] = useState();
+    const [documentation, setDocumentation] = useState();
 
     useEffect(() => {
-        fetch('./README.md').then((response) => {
+        fetch('https://raw.githubusercontent.com/stay1st/markdown-previewer/main/src/README.md').then((response) => {
             return response.ok ? response.text() : Promise.reject('README.md not fetched correctly!');
         }).then((text) => setInput(text)).catch((error) => console.log(error));
-    },[]);
+    }, []);
 
     return (
         <div className="app">
@@ -26,14 +27,11 @@ export default function App() {
                 </div>
                 <div>
                     <h3 className="main-text">Documentation</h3>
-                    <p id="documentation-area"
-                        value={input}
-                        onChange={(event) => setInput(event.target.value)}
-                    ></p>
+                    <div id="documentation-area">
+                    </div>
                 </div>
             </div>
             <div id="right-container" className="main-text">
-                <h1 id="h1-text">Markdown Previewer</h1>
                 <div id="previewer">
                     <ReactMarkdown>
                         {input}

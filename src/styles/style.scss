@@ -14,23 +14,21 @@ html {
     background-color: $bgrndClrDrkPrime;
 }
 
-h2, h3 {
-    padding-left: 40px; /* This is to align the headings 
-    to the right, since there is a padding of 40px on the right
-    of the container they're in "#left-container"*/
-}
-
 a {
     color: $linkClr;
     text-decoration: none;
+
     &:hover {
         color: $linkHvrClr;
         border-bottom: 1px solid $linkHvrClr;
     }
+
     &:visited {
         color: $linkVisited;
         border-bottom: 1px solid $linkVisited;
-    };
+    }
+
+    ;
 }
 
 /* body {
@@ -42,6 +40,7 @@ a {
     display: flex;
     justify-content: center;
     padding: 15px;
+    height: 100%;
 }
 
 .main-text {
@@ -50,22 +49,35 @@ a {
     text-align: center;
 }
 
-#h1-text {
-    letter-spacing: .025em;
-}
-
 #left-container {
     justify-content: center;
+    height: auto;
     display: block;
     width: 40%;
     margin-right: 4px;
     align-items: center;
     padding-right: 40px;
+
+    h2,
+    h3 {
+        padding-left: 40px;
+        /* This is to align the headings 
+        to the right, since there is a padding of 40px on the right
+        of the container they're in "#left-container"*/
+        margin-top: 5px, 5px, 0, 0;
+
+    }
 }
 
 #right-container {
     justify-content: center;
     width: 60%;
+    height: 100%;
+
+    h1 {
+        margin: 0px;
+    }
+
     img {
         max-height: 100%;
         height: auto;
@@ -74,10 +86,13 @@ a {
     }
 }
 
-#editor, #previewer, #documentation-area {
+#editor,
+#previewer,
+#documentation-area {
     border: none;
     border-radius: 4px;
-    padding: 15px;
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 #editor {
@@ -87,15 +102,7 @@ a {
     width: 100%;
     font-family: $editorText;
     resize: none;
-}
-
-#previewer {
-    color: $secondClr;
-    background-color: $bgrndClrLtn;
-    border: 2px solid $primeClr;
-    height: 80vh;
-    letter-spacing: .05em;
-    text-align: left;
+    overflow-y: scroll;
 }
 
 #documentation-area {
@@ -105,4 +112,15 @@ a {
     width: 100%;
     font-family: $mainFont;
     resize: none;
+}
+
+#previewer {
+    color: $secondClr;
+    background-color: $bgrndClrLtn;
+    border: 2px solid $primeClr;
+    padding-right: 12px; // +2px because of border size.
+    letter-spacing: .05em;
+    text-align: left;
+    overflow: scroll;
+    height: 90vh;
 }
