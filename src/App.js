@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import README from "./README.md"
+import { remark } from 'remark'
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
+import rehypeFilter from "react-markdown/lib/rehype-filter";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import "./styles/style.css";
 
 export default function App() {
 
     const [input, setInput] = useState();
     const [documentation, setDocumentation] = useState(); //For future
+
 
     useEffect(() => {
         fetch('https://raw.githubusercontent.com/stay1st/markdown-previewer/main/src/README.md').then((response) => {
@@ -19,6 +25,22 @@ export default function App() {
             return response.ok ? response.text() : Promise.reject('DOCUMENTATION.md not fetched correctly!');
         }).then((text) => setDocumentation(text)).catch((error) => console.log(error))
     }, []); // just for fun!! For future implementation of showing JSX expressions.
+    
+    const toPreview = () => {
+        return (
+            <pre>
+                <SyntaxHighlighter
+                    language='javascript'
+                    PreTag='div'
+                    style={a11yDark}
+                ></SyntaxHighlighter>
+            </pre>
+        )
+    }
+    const handleChange = () => {
+        let codeRegex = input.match(new RegExp(/[`]*/gim)).map(val => val).indexOf('`');
+        console.log(codeRegex);
+    }
 
     return (
         <div className="app">
@@ -42,7 +64,8 @@ export default function App() {
                         <h3>Stylizing Text:</h3>
                         <strong>Bold</strong><p> **bold text**</p>
                         <em>Italic</em>	<p>*italicized text*</p>
-                        <blockquote>Blockquote</blockquote>	<p>> blockquote</p>
+                        <blockquote>Blockquote</blockquote>
+                        <p>> blockquote</p>
                         <h3>For List Items:</h3>
                         <h4>Ordered List:</h4>
                         <p>   1. First item</p>
@@ -52,17 +75,24 @@ export default function App() {
                         <p>   - First item</p>
                         <p>   - Second item</p>
                         <p>   - Third item</p>
-                        <p><h4>Code:</h4> `code`</p>
-                        <p><h4>Horizontal Rule:</h4> ---</p>
-                        <p><h4>Link:</h4>	[title](https://www.example.com)</p>
-                        <p><h4>Image:</h4>	![alt text](image.jpg)</p>
+                        <h4>Code:</h4>
+                        <p> `code`</p>
+                        <h4>Horizontal Rule:</h4>
+                        <p> ---</p>
+                        <h4>Link:</h4>
+                        <p>	[title](https://www.example.com)</p>
+                        <h4>Image:</h4>
+                        <p>	![alt text](image.jpg)</p>
                     </div>
                 </div>
             </div>
             <div id="right-container" className="main-text">
                 <div id="previewer">
-                    <ReactMarkdown>
-                        {input}
+                    <ReactMarkdown
+                        children={input}
+                        remarkPlugins={[remarkGfm, remarkBreaks]}
+                        components={{code: toPreview}}
+                    >{input}
                     </ReactMarkdown>
                 </div>
             </div>

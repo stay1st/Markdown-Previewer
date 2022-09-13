@@ -10,7 +10,11 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.3",
     "react-scripts": "5.0.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "remark": "^14.0.2",
     "remark-breaks": "^3.0.2",
+    "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

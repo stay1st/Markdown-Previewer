@@ -1,6 +1,6 @@
-$bgrndClr: #1a2425;
+$bgrndClr: #161b1c;
 $bgrndClrDrkn: darken($bgrndClr, 10%);
-$bgrndClrLtn: lighten($bgrndClr, 10%);
+$bgrndClrLtn: lighten($bgrndClr, 5%);
 $primeClr: rgb(37, 184, 217);
 $secondClr: rgb(231, 222, 222);
 $linkClr: $primeClr;
@@ -9,8 +9,18 @@ $linkVisited: darken($linkClr, 20%);
 $editorText: 'Courier New', Courier, monospace;
 $mainFont: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+html{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
 body {
     background-color: $bgrndClr;
+    width: 100%;
+    max-width: 1440px;
+    justify-content: center;
+    align-items: center;
 }
 
 a {
@@ -101,6 +111,7 @@ a {
     height: 40vh;
     width: 100%;
     font-family: $editorText;
+    font-size: 1em;
     resize: none;
     overflow-y: scroll;
 }
@@ -111,6 +122,7 @@ a {
     height: 36vh;
     width: 100%;
     font-family: $mainFont;
+    font-size: 1.25em;
     resize: none;
 }
 
