@@ -96,7 +96,7 @@ a {
 }
 
 #editor,
-#previewer,
+#preview,
 #documentation-area {
     border: none;
     border-radius: 4px;
@@ -126,7 +126,7 @@ a {
     resize: none;
 }
 
-#previewer {
+#preview {
     color: $secondClr;
     background-color: $bgrndClrLtn;
     border: 2px solid $primeClr;

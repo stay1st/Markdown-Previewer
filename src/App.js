@@ -85,7 +85,7 @@ export default function App() {
                 </div>
             </div>
             <div id="right-container" className="main-text">
-                <div id="previewer">
+                <div id="preview">
                     <ReactMarkdown
                         children={input}
                         components={{code: toPreview}}
