@@ -27,9 +27,11 @@ export default function App() {
     }, []); // just for fun!! For future implementation of showing JSX expressions.
     
     const toPreview = () => {
+        if(input)
         return (
             <pre>
                 <SyntaxHighlighter
+                    children={String(input).match(/(^`{1,3}.*`{1,3})/gms)}
                     language='javascript'
                     PreTag='div'
                     style={a11yDark}
@@ -65,7 +67,7 @@ export default function App() {
                         <strong>Bold</strong><p> **bold text**</p>
                         <em>Italic</em>	<p>*italicized text*</p>
                         <blockquote>Blockquote</blockquote>
-                        <p>> blockquote</p>
+                        <blockquote>{"\> blockquote"}</blockquote>
                         <h3>For List Items:</h3>
                         <h4>Ordered List:</h4>
                         <p>   1. First item</p>
@@ -92,8 +94,7 @@ export default function App() {
                         children={input}
                         remarkPlugins={[remarkGfm, remarkBreaks]}
                         components={{code: toPreview}}
-                    >{input}
-                    </ReactMarkdown>
+                    />
                 </div>
             </div>
         </div>
