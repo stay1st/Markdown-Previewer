@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { remark } from 'remark'
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
-import rehypeFilter from "react-markdown/lib/rehype-filter";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import "./styles/style.css";
@@ -25,23 +23,21 @@ export default function App() {
             return response.ok ? response.text() : Promise.reject('DOCUMENTATION.md not fetched correctly!');
         }).then((text) => setDocumentation(text)).catch((error) => console.log(error))
     }, []); // just for fun!! For future implementation of showing JSX expressions.
-    
+
     const toPreview = () => {
-        if(input)
+        let value = input;
+        let regMatch = String(input).match(/^`{3}.*`{3}/gms);
+        let regMatch2 = String(input).match(/`[^\`].*`/gms);
         return (
             <pre>
                 <SyntaxHighlighter
-                    children={String(input).match(/(^`{1,3}.*`{1,3})/gms)}
+                    children={(regMatch2)}
                     language='javascript'
                     PreTag='div'
                     style={a11yDark}
                 ></SyntaxHighlighter>
             </pre>
         )
-    }
-    const handleChange = () => {
-        let codeRegex = input.match(new RegExp(/[`]*/gim)).map(val => val).indexOf('`');
-        console.log(codeRegex);
     }
 
     return (
@@ -92,9 +88,17 @@ export default function App() {
                 <div id="previewer">
                     <ReactMarkdown
                         children={input}
-                        remarkPlugins={[remarkGfm, remarkBreaks]}
                         components={{code: toPreview}}
+                        remarkPlugins={[remarkGfm, remarkBreaks]}
                     />
+                    {/* <pre>
+                        <SyntaxHighlighter
+                            children={String(input).match(/`{1,3}.*`{1,3}/gms)}
+                            language='javascript'
+                            PreTag='div'
+                            style={a11yDark}
+                        ></SyntaxHighlighter>
+                    </pre> */}
                 </div>
             </div>
         </div>

@@ -3,10 +3,12 @@
 ## This is a sub-heading...
 ### And here's some other cool stuff:
 
-Heres some code, `<div></div>`, between 2 backticks.
+Heres some code, between 2 backticks.
+`<div></div>`
+
+// this is multi-line code:
 
 ```
-// this is multi-line code:
 
 function anotherExample(firstLine, lastLine) {
   if (firstLine == '```' && lastLine == '```') {
