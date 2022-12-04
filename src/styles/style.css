@@ -25,10 +25,6 @@ a:visited {
   border-bottom: 1px solid #166e82;
 }
 
-/* body {
-    display: flex;
-    justify-content: center;
-} */
 .app {
   display: flex;
   justify-content: center;
@@ -114,4 +110,26 @@ a:visited {
   text-align: left;
   overflow: scroll;
   height: 90vh;
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */
+
+@media (max-width: 1000px) {
+  .app {
+    flex-direction: column;
+  }
+
+  #left-container {
+    width: 90%;
+    padding: 0;
+    margin: auto;
+  }
+
+  #right-container {
+    width: auto;
+    padding: 0;
+    margin: auto;
+  }
+
+  #documentation-area {
+    margin-bottom: 30px;
+  }
+}

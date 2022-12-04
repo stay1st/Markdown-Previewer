@@ -9,7 +9,7 @@ $linkVisited: darken($linkClr, 20%);
 $editorText: 'Courier New', Courier, monospace;
 $mainFont: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-html{
+html {
     width: 100%;
     justify-content: center;
     display: flex;
@@ -39,11 +39,6 @@ a {
 
     ;
 }
-
-/* body {
-    display: flex;
-    justify-content: center;
-} */
 
 .app {
     display: flex;
